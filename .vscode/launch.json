@@ -12,6 +12,20 @@
         "dev:nodemon"
       ],
       "runtimeExecutable": "npm",
+      "console": "integratedTerminal",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "type": "node"
+    },
+    {
+      "name": "dev:tsnode",
+      "request": "launch",
+      "runtimeArgs": [
+        "run-script",
+        "dev:tsnode"
+      ],
+      "runtimeExecutable": "npm",
       "skipFiles": [
         "<node_internals>/**"
       ],
