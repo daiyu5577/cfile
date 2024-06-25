@@ -2,8 +2,7 @@ node_modules
 .DS_Store
 dist-ssr
 *.local
-dist
 *.log
 .idea
-# images
+# dist
 # /.vscode/

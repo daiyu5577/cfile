@@ -1,4 +1,4 @@
-import fse from 'fs-extra/esm'
+import fse from 'fs-extra'
 import ora from 'ora';
 import { custError } from '../utils/error.ts'
 

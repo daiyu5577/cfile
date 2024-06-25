@@ -1,6 +1,6 @@
 import path from 'path';
 import fs from 'fs/promises'
-import fse from 'fs-extra/esm'
+import fse from 'fs-extra'
 import { input, select, confirm } from '@inquirer/prompts';
 import { spinner, pathExistsReject } from '../../utils/index.ts';
 import { custError } from '../../utils/error.ts'

@@ -1,6 +1,7 @@
 import {
   defineConfig
 } from 'rollup';
+import del from 'rollup-plugin-delete'
 import terser from '@rollup/plugin-terser'
 import commonjs from '@rollup/plugin-commonjs'
 import typescript from '@rollup/plugin-typescript'
@@ -11,5 +12,12 @@ export default defineConfig({
     dir: 'dist',
     format: 'esm',
   },
-  plugins: [typescript(), commonjs(), terser()]
+  plugins: [
+    del({
+      targets: 'dist/*'
+    }),
+    typescript(),
+    commonjs(),
+    terser()
+  ]
 });

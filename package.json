@@ -10,7 +10,8 @@
   "scripts": {
     "dev:nodemon": "nodemon --delay 0 -x ts-node-esm --transpile-only main.ts creat -p ./cli2",
     "dev:tsnode": "ts-node --esm main.ts -p ./cli2",
-    "build": "rollup -c"
+    "build:tsc": "rm -rf dist && tsc --noEmit false",
+    "build:rollup": "rollup -c"
   },
   "keywords": [
     "node",
@@ -29,6 +30,7 @@
     "@types/node": "^20.14.8",
     "nodemon": "^3.1.4",
     "rollup": "^4.18.0",
+    "rollup-plugin-delete": "^2.0.0",
     "ts-node": "^10.9.2",
     "tslib": "^2.6.3",
     "typescript": "^5.5.2"
