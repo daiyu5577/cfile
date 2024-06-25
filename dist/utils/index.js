@@ -1,6 +1,6 @@
 import fse from 'fs-extra';
 import ora from 'ora';
-import { custError } from '../utils/error.ts';
+import { custError } from '../utils/error.js';
 export const spinner = ora();
 export const pathExistsReject = async (p) => {
     const isExists = await fse.pathExists(p);

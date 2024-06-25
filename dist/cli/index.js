@@ -1,8 +1,8 @@
 import { Command } from 'commander';
 import chalk from 'chalk';
-import { spinner } from '../utils/index.ts';
+import { spinner } from '../utils/index.js';
 const program = new Command();
-import runCreat from './command/creat.ts';
+import runCreat from './command/creat.js';
 program
     .name('creat')
     .description('创建模板文件到指定目录')

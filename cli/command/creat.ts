@@ -2,8 +2,8 @@ import path from 'path';
 import fs from 'fs/promises'
 import fse from 'fs-extra'
 import { input, select, confirm } from '@inquirer/prompts';
-import { spinner, pathExistsReject } from '../../utils/index.ts';
-import { custError } from '../../utils/error.ts'
+import { spinner, pathExistsReject } from '../../utils/index.js';
+import { custError } from '../../utils/error.js'
 
 export const getUrl = (path: string) => new URL(path, import.meta.url)
 
