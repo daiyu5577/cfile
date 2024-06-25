@@ -1,0 +1,35 @@
+{
+  "name": "cfile",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "./dist/main.js",
+  "bin": {
+    "mage": "./dist/main.js"
+  },
+  "scripts": {
+    "dev:nodemon": "nodemon --delay 300 -x ts-node-esm main.ts",
+    "dev:tsnode": "ts-node --esm main.ts",
+    "build": "rollup -c"
+  },
+  "keywords": [
+    "node",
+    "rollup"
+  ],
+  "author": "daiyu",
+  "license": "ISC",
+  "files": [
+    "dist"
+  ],
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^26.0.1",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-typescript": "^11.1.6",
+    "@types/node": "^20.14.8",
+    "nodemon": "^3.1.4",
+    "rollup": "^4.18.0",
+    "ts-node": "^10.9.2",
+    "tslib": "^2.6.3",
+    "typescript": "^5.5.2"
+  }
+}
