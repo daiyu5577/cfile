@@ -9,7 +9,7 @@ export default defineConfig({
   input: 'main.ts',
   output: {
     dir: 'dist',
-    format: 'cjs',
+    format: 'esm',
   },
   plugins: [typescript(), commonjs(), terser()]
 });

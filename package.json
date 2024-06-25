@@ -8,7 +8,7 @@
     "mage": "./dist/main.js"
   },
   "scripts": {
-    "dev:nodemon": "nodemon --delay 300 -x ts-node-esm main.ts",
+    "dev:nodemon": "nodemon --delay 0 -x ts-node-esm --transpile-only main.ts creat -p ./cli",
     "dev:tsnode": "ts-node --esm main.ts",
     "build": "rollup -c"
   },
@@ -31,5 +31,10 @@
     "ts-node": "^10.9.2",
     "tslib": "^2.6.3",
     "typescript": "^5.5.2"
+  },
+  "dependencies": {
+    "@inquirer/prompts": "^5.0.6",
+    "commander": "^12.1.0",
+    "ora": "^8.0.1"
   }
 }

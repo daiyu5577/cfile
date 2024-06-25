@@ -6,4 +6,4 @@ dist
 *.log
 .idea
 # images
-/.vscode/
+# /.vscode/
