@@ -1,6 +1,6 @@
 import fse from 'fs-extra'
 import ora from 'ora';
-import { custError } from '../utils/error.js'
+import { custError } from '../utils/error'
 
 export const spinner = ora()
 

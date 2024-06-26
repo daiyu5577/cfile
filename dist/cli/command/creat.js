@@ -2,8 +2,8 @@ import path from 'path';
 import fs from 'fs/promises';
 import fse from 'fs-extra';
 import { input, select } from '@inquirer/prompts';
-import { spinner, pathExistsReject } from '../../utils/index.js';
-import { custError } from '../../utils/error.js';
+import { spinner, pathExistsReject } from '../../utils/index';
+import { custError } from '../../utils/error';
 export const getUrl = (path) => new URL(path, import.meta.url);
 const runCreat = async (params) => {
     // tip
