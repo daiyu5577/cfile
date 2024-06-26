@@ -1,3 +1,69 @@
-.home {
-  :global {}
+:global {
+  body {
+    background: transparent;
+
+    .back {
+      display: none !important;
+    }
+  }
+}
+
+.entryComp {
+  // height: 100vh;
+  // min-height: 1300px;
+
+  :global {
+
+    .atouch:active {
+      opacity: 0.7;
+    }
+
+    .ellipsis {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    // transitionGroup
+    .card-enter {
+      opacity: 0;
+      transform: translate(-50%, 40px) !important;
+    }
+
+    .card-enter-active {
+      opacity: 1;
+      transform: translate(-50%, 0px) !important;
+      transition: all 600ms;
+    }
+
+    .card-exit {
+      opacity: 1;
+      transform: translate(-50%, 0px) !important;
+    }
+
+    .card-exit-active {
+      opacity: 0;
+      transform: translate(-50%, 40px) !important;
+      transition: all 600ms;
+    }
+
+    .back-box {
+      position: fixed;
+      top: 50PX;
+      left: 0;
+      z-index: 10;
+
+      .backIcon {
+        width: 120px;
+        height: 60px;
+      }
+
+      .backIcon2 {
+        width: 70px;
+        height: 70px;
+        margin-left: 30px;
+      }
+
+    }
+  }
 }

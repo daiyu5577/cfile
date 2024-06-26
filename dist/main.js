@@ -1,2 +1,4 @@
 #!/usr/bin/env node
-import './cli/index';
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+require("./cli/index");
