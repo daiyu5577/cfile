@@ -5,7 +5,7 @@
   "type": "module",
   "main": "./dist/main.js",
   "bin": {
-    "mage": "./dist/main.js"
+    "cfile": "./dist/main.js"
   },
   "scripts": {
     "dev:nodemon": "nodemon --delay 0 -x ts-node-esm --transpile-only main.ts creat -p ./cli2",
@@ -22,6 +22,9 @@
   "files": [
     "dist"
   ],
+  "engines": {
+    "node": ">=18.12.1"
+  },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^26.0.1",
     "@rollup/plugin-terser": "^0.4.4",
