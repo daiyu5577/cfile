@@ -8,7 +8,7 @@ import runCreat from './command/creat.js'
 program
   .name('creat')
   .description('创建模板文件到指定目录')
-  .option('-p, --path <string>', '路径')
+  .requiredOption('-p, --path <string>', '路径')
   .action((options, command) => {
     runCreat(options)
       .catch(e => {
