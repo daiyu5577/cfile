@@ -19,7 +19,7 @@ const inquirer_1 = __importDefault(require("inquirer"));
 const chalk_1 = __importDefault(require("chalk"));
 const index_1 = require("../../utils/index");
 const error_1 = require("../../utils/error");
-const slpParseTsxAddRoute_1 = __importDefault(require("../../plugins/slpParseTsxAddRoute"));
+const slpParseTsxAddRouteStr_1 = __importDefault(require("../../plugins/slpParseTsxAddRouteStr"));
 class RunCreat {
     constructor(params) {
         this.params = params;
@@ -95,5 +95,5 @@ class RunCreat {
 // 插件
 RunCreat.plugins = [];
 // add plugin
-RunCreat.add(slpParseTsxAddRoute_1.default);
+RunCreat.add(slpParseTsxAddRouteStr_1.default);
 exports.default = RunCreat;

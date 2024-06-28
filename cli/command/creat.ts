@@ -5,7 +5,7 @@ import inquirer from 'inquirer';
 import chalk from 'chalk';
 import { spinner, pathExistsReject } from '../../utils/index';
 import { custError } from '../../utils/error'
-import slpParseTsxAddRoute from '../../plugins/slpParseTsxAddRoute'
+import slpParseTsxAddRouteStr from '../../plugins/slpParseTsxAddRouteStr'
 
 export interface Params {
   path: string
@@ -103,6 +103,6 @@ class RunCreat {
 }
 
 // add plugin
-RunCreat.add(slpParseTsxAddRoute)
+RunCreat.add(slpParseTsxAddRouteStr)
 
 export default RunCreat
