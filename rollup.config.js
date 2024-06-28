@@ -10,8 +10,10 @@ export default defineConfig({
   input: 'main.ts',
   output: {
     dir: 'dist',
-    format: 'esm',
+    format: "commonjs",
+    preserveModules: true,
   },
+  external: [/template/],
   plugins: [
     del({
       targets: 'dist/*'

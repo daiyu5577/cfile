@@ -12,7 +12,7 @@
     "dev:nodemon": "nodemon --delay 0 -x ts-node-esm --transpile-only main.ts creat -p ./cli2",
     "dev:tsnode": "ts-node --esm main.ts -p ./cli2",
     "build:tsc": "rm -rf dist && tsc && cp -R ./template ./dist",
-    "build:rollup": "rollup -c"
+    "build:rollup": "rollup -c --bundleConfigAsCjs && cp -R ./template ./dist"
   },
   "keywords": [
     "node",
