@@ -15,7 +15,7 @@ program
       .catch(e => {
         // console.error(JSON.stringify(e.stack))
         // console.error(chalk.bgRed(e.message))
-        spinner.fail(chalk.bgRed(e.message))
+        spinner.fail(chalk.red(e.message))
       })
   });
 

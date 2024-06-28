@@ -5,6 +5,20 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "test:Ast",
+      "request": "launch",
+      "runtimeArgs": [
+        "run-script",
+        "dev:nodemon"
+      ],
+      "runtimeExecutable": "npm",
+      "console": "integratedTerminal",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "type": "node"
+    },
+    {
       "name": "dev:nodemon",
       "request": "launch",
       "runtimeArgs": [

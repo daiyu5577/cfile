@@ -7,6 +7,7 @@
     "cfile": "./dist/main.js"
   },
   "scripts": {
+    "test:ast": "nodemon --delay 0 -x ts-node-esm --transpile-only ./plugins/slpParseTsxAddRoute.ts",
     "dev:nodemon": "nodemon --delay 0 -x ts-node-esm --transpile-only main.ts creat -p ./cli2",
     "dev:tsnode": "ts-node --esm main.ts -p ./cli2",
     "build:tsc": "rm -rf dist && tsc && cp -R ./template ./dist",
@@ -25,9 +26,14 @@
     "node": ">=18.12.1"
   },
   "devDependencies": {
+    "@babel/parser": "^7.24.7",
+    "@babel/types": "^7.24.7",
     "@rollup/plugin-commonjs": "^26.0.1",
     "@rollup/plugin-terser": "^0.4.4",
     "@rollup/plugin-typescript": "^11.1.6",
+    "@types/babel__generator": "^7.6.8",
+    "@types/babel__template": "^7.4.4",
+    "@types/babel__traverse": "^7.20.6",
     "@types/fs-extra": "^11.0.4",
     "@types/inquirer": "^9.0.7",
     "@types/node": "^20.14.8",
@@ -39,6 +45,9 @@
     "typescript": "^5.5.2"
   },
   "dependencies": {
+    "@babel/generator": "^7.24.7",
+    "@babel/template": "^7.24.7",
+    "@babel/traverse": "^7.24.7",
     "chalk": "^4.1.2",
     "commander": "^12.1.0",
     "fs-extra": "^11.2.0",
