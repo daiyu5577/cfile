@@ -5,11 +5,11 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "test:Ast",
+      "name": "test:str",
       "request": "launch",
       "runtimeArgs": [
         "run-script",
-        "dev:nodemon"
+        "test:str"
       ],
       "runtimeExecutable": "npm",
       "console": "integratedTerminal",

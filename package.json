@@ -7,7 +7,8 @@
     "cfile": "./dist/main.js"
   },
   "scripts": {
-    "test:ast": "nodemon --delay 0 -x ts-node-esm --transpile-only ./plugins/slpParseTsxAddRoute.ts",
+    "test:ast": "nodemon --delay 0 -x ts-node-esm --transpile-only ./plugins/slpParseTsxAddRouteAst.ts",
+    "test:str": "nodemon --delay 0 -x ts-node-esm --transpile-only ./plugins/slpParseTsxAddRouteStr.ts",
     "dev:nodemon": "nodemon --delay 0 -x ts-node-esm --transpile-only main.ts creat -p ./cli2",
     "dev:tsnode": "ts-node --esm main.ts -p ./cli2",
     "build:tsc": "rm -rf dist && tsc && cp -R ./template ./dist",

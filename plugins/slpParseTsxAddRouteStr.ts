@@ -33,7 +33,7 @@ export default async function slpParseTsxAddRoute(crtInst: RunCreat) {
     if (!~lastLazy || !~lastRoute) return
 
     fileArr.splice(lastLazy + 1, 0, lazyTemp)
-    fileArr.splice(lastLazy, 0, routeTemp)
+    fileArr.splice(lastRoute, 0, routeTemp)
 
     await fs.writeFile(routeFile, fileArr.join('\n'), { encoding: 'utf-8', flag: "w" })
 

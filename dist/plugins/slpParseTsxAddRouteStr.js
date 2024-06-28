@@ -40,7 +40,7 @@ function slpParseTsxAddRoute(crtInst) {
             if (!~lastLazy || !~lastRoute)
                 return;
             fileArr.splice(lastLazy + 1, 0, lazyTemp);
-            fileArr.splice(lastLazy, 0, routeTemp);
+            fileArr.splice(lastRoute, 0, routeTemp);
             yield promises_1.default.writeFile(routeFile, fileArr.join('\n'), { encoding: 'utf-8', flag: "w" });
         }
         catch (error) {
