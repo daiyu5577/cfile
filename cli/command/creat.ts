@@ -3,7 +3,7 @@ import fs from 'fs/promises'
 import fse from 'fs-extra'
 import inquirer from 'inquirer';
 import chalk from 'chalk';
-import { spinner, pathExistsReject } from '../../utils/index';
+import { spinner, pathExistsReject, deepCopy } from '../../utils/index';
 import { custError } from '../../utils/error'
 import slpParseTsxAddRouteStr from '../../plugins/slpParseTsxAddRouteStr'
 
@@ -19,7 +19,7 @@ class RunCreat {
   static plugins: pluginFn[] = []
 
   // 模板地址
-  tempUrl = path.resolve(__dirname, '../../template')
+  tempsDirPath = path.resolve(__dirname, '../../template')
 
   // 模板列表
   tempList: string[] = []
@@ -31,7 +31,7 @@ class RunCreat {
   }
 
   // 生成目标路径
-  targetUrl: string = ''
+  copyTargetPath: string = ''
 
   constructor(private params: Params) { }
 
@@ -41,7 +41,7 @@ class RunCreat {
   }
 
   async start() {
-    this.tempList = await fs.readdir(this.tempUrl, { encoding: 'utf-8' })
+    this.tempList = await fs.readdir(this.tempsDirPath, { encoding: 'utf-8' })
     const answers = await inquirer.prompt([
       {
         type: 'list',
@@ -72,19 +72,23 @@ class RunCreat {
     spinner.start(`开始创建模板...\n`)
 
     // check dir
-    const targetUrl = path.resolve(process.cwd(), this.params.path, answers.fileName)
-    this.targetUrl = targetUrl
-    await pathExistsReject(targetUrl)
+    const copyTargetPath = path.resolve(process.cwd(), this.params.path, answers.fileName)
+    this.copyTargetPath = copyTargetPath
+    await pathExistsReject(copyTargetPath)
 
     // copy
     const copy = async () => {
-      const targetTempUrl = path.resolve(this.tempUrl, answers.targetTemp)
-      const isTargetTempUrl = await fse.pathExists(targetTempUrl)
-      if (!isTargetTempUrl) {
+      const chooseTempPath = path.resolve(this.tempsDirPath, answers.targetTemp)
+      const isChooseTempPath = await fse.pathExists(chooseTempPath)
+      if (!isChooseTempPath) {
         throw custError('')
       }
 
-      await fse.copy(targetTempUrl, targetUrl)
+      // use fse.copy
+      await fse.copy(chooseTempPath, copyTargetPath)
+
+      // use deepCopy
+      // await deepCopy({ souecePath: chooseTempPath, targetPath: copyTargetPath })
 
       // tip 创建完成
       spinner.succeed(`创建完成...\n`)
