@@ -20,14 +20,27 @@ const parser_1 = require("@babel/parser");
 const traverse_1 = __importDefault(require("@babel/traverse"));
 const generator_1 = __importDefault(require("@babel/generator"));
 const template_1 = __importDefault(require("@babel/template"));
+const includeRoutes = [
+    {
+        name: 'act_act-center_route',
+        dirReg: /act\/act-center/,
+        matchReg: /.+(?=\/act\/act-center)/g,
+        routePath: '/act/act-center/src/Router.tsx'
+    }
+];
 function slpParseTsxAddRoute(crtInst) {
     return __awaiter(this, void 0, void 0, function* () {
+        var _a;
         try {
             let routeFile = '';
-            if (crtInst.targetUrl.includes('act/act-center')) {
-                const matchPath = crtInst.targetUrl.match(/.+(?=\/act\/act-center)/g)[0];
-                routeFile = matchPath + '/act/act-center/src/Router.tsx';
+            let curRoute;
+            if (!includeRoutes.some(v => v.dirReg.test(crtInst.copyTargetPath))) {
+                console.log(chalk_1.default.yellow(`当前仅支持：${includeRoutes.map(v => v.routePath).join('、')}的路由文件代码生成`));
+                return;
             }
+            curRoute = includeRoutes.find(v => v.dirReg.test(crtInst.copyTargetPath));
+            const matchPath = (_a = crtInst.copyTargetPath.match(curRoute.matchReg)) === null || _a === void 0 ? void 0 : _a[0];
+            routeFile = matchPath + curRoute.routePath;
             console.log('routeFile', routeFile);
             const lazyTemp = (0, template_1.default)(`
     const ${crtInst.answers.fileName} = lazy(() => import('./pages/${crtInst.answers.fileName}/Home'))

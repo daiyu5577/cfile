@@ -9,15 +9,31 @@ import generate from "@babel/generator";
 import template from "@babel/template";
 import t from "@babel/types";
 
+const includeRoutes = [
+  {
+    name: 'act_act-center_route',
+    dirReg: /act\/act-center/,
+    matchReg: /.+(?=\/act\/act-center)/g,
+    routePath: '/act/act-center/src/Router.tsx'
+  }
+]
+type IncludeRouteItem = typeof includeRoutes[number]
+
 export default async function slpParseTsxAddRoute(crtInst: RunCreat) {
   try {
 
     let routeFile = ''
+    let curRoute: IncludeRouteItem
 
-    if (crtInst.targetUrl.includes('act/act-center')) {
-      const matchPath = crtInst.targetUrl.match(/.+(?=\/act\/act-center)/g)[0]
-      routeFile = matchPath + '/act/act-center/src/Router.tsx'
+    if (!includeRoutes.some(v => v.dirReg.test(crtInst.copyTargetPath))) {
+      console.log(chalk.yellow(`当前仅支持：${includeRoutes.map(v => v.routePath).join('、')}的路由文件代码生成`))
+      return
     }
+
+    curRoute = includeRoutes.find(v => v.dirReg.test(crtInst.copyTargetPath)) as IncludeRouteItem
+
+    const matchPath = crtInst.copyTargetPath.match(curRoute.matchReg)?.[0]
+    routeFile = matchPath + curRoute.routePath
 
     console.log('routeFile', routeFile)
 

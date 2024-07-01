@@ -35,7 +35,7 @@ export const deepCopy = async (params: DeepCopy) => {
         const curFileStats = await fs.stat(curFileSourcePath)
 
         if (curFileStats.isDirectory()) {
-          loopFn({ souecePath: curFileSourcePath, targetPath: curFileTargetPath, formatterFn }, res)
+          loopFn({ souecePath: curFileSourcePath, targetPath: curFileTargetPath, formatterFn })
           count--
           return
         }

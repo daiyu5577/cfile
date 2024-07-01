@@ -24,7 +24,7 @@ class RunCreat {
     constructor(params) {
         this.params = params;
         // 模板地址
-        this.tempUrl = path_1.default.resolve(__dirname, '../../template');
+        this.tempsDirPath = path_1.default.resolve(__dirname, '../../template');
         // 模板列表
         this.tempList = [];
         // 选择结果
@@ -33,7 +33,7 @@ class RunCreat {
             fileName: ''
         };
         // 生成目标路径
-        this.targetUrl = '';
+        this.copyTargetPath = '';
     }
     static add(fn) {
         RunCreat.plugins.push(fn);
@@ -41,7 +41,7 @@ class RunCreat {
     }
     start() {
         return __awaiter(this, void 0, void 0, function* () {
-            this.tempList = yield promises_1.default.readdir(this.tempUrl, { encoding: 'utf-8' });
+            this.tempList = yield promises_1.default.readdir(this.tempsDirPath, { encoding: 'utf-8' });
             const answers = yield inquirer_1.default.prompt([
                 {
                     type: 'list',
@@ -69,17 +69,20 @@ class RunCreat {
             // tip 加载模板
             index_1.spinner.start(`开始创建模板...\n`);
             // check dir
-            const targetUrl = path_1.default.resolve(process.cwd(), this.params.path, answers.fileName);
-            this.targetUrl = targetUrl;
-            yield (0, index_1.pathExistsReject)(targetUrl);
+            const copyTargetPath = path_1.default.resolve(process.cwd(), this.params.path, answers.fileName);
+            this.copyTargetPath = copyTargetPath;
+            yield (0, index_1.pathExistsReject)(copyTargetPath);
             // copy
             const copy = () => __awaiter(this, void 0, void 0, function* () {
-                const targetTempUrl = path_1.default.resolve(this.tempUrl, answers.targetTemp);
-                const isTargetTempUrl = yield fs_extra_1.default.pathExists(targetTempUrl);
-                if (!isTargetTempUrl) {
+                const chooseTempPath = path_1.default.resolve(this.tempsDirPath, answers.targetTemp);
+                const isChooseTempPath = yield fs_extra_1.default.pathExists(chooseTempPath);
+                if (!isChooseTempPath) {
                     throw (0, error_1.custError)('');
                 }
-                yield fs_extra_1.default.copy(targetTempUrl, targetUrl);
+                // use fse.copy
+                yield fs_extra_1.default.copy(chooseTempPath, copyTargetPath);
+                // use deepCopy
+                // await deepCopy({ souecePath: chooseTempPath, targetPath: copyTargetPath })
                 // tip 创建完成
                 index_1.spinner.succeed(`创建完成...\n`);
             });
