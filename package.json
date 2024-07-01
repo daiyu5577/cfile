@@ -12,7 +12,8 @@
     "dev:nodemon": "nodemon --delay 0 -x ts-node-esm --transpile-only main.ts creat -p ./cli2",
     "dev:tsnode": "ts-node --esm main.ts -p ./cli2",
     "build:tsc": "rm -rf dist && tsc && cp -R ./template ./dist",
-    "build:rollup": "rollup -c --bundleConfigAsCjs && cp -R ./template ./dist"
+    "build:rollup": "rollup -c --bundleConfigAsCjs && cp -R ./template ./dist",
+    "release": "release-it"
   },
   "keywords": [
     "node",
@@ -54,6 +55,7 @@
     "fs-extra": "^11.2.0",
     "handlebars": "^4.7.8",
     "inquirer": "^8.0.0",
-    "ora": "^5.4.1"
+    "ora": "^5.4.1",
+    "release-it": "^17.4.0"
   }
 }
