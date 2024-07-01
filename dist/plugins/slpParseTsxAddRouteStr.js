@@ -34,8 +34,8 @@ function slpParseTsxAddRoute(crtInst) {
             let lastRoute = -1;
             for (let i = fileArr.length - 1; i >= 0; i--) {
                 const curLine = fileArr[i];
-                /lazy\(.+\)/.test(curLine) && (lastLazy = i);
-                /\<Route.+\/\>/.test(curLine) && (lastRoute = i);
+                !~lastLazy && /lazy\(.+\)/.test(curLine) && (lastLazy = i);
+                !~lastRoute && /\<Route.+\/\>/.test(curLine) && (lastRoute = i);
             }
             if (!~lastLazy || !~lastRoute)
                 return;
