@@ -1,7 +1,7 @@
 ## 模板使用
   1. <b>代码片段使用</b>
-    *  模板统一存放于 template 文件夹，文件命名方式为 项目名_目录1_目录2_标识（标识可自定义用于区分）
-    * 模板使用 handlebars 语法，参考文档[handlebarsjs](https://handlebarsjs.com/)
+     *  模板统一存放于 template 文件夹，文件命名方式为 项目名_目录1_目录2_标识（标识可自定义用于区分）
+     * 模板使用 handlebars 语法，参考文档[handlebarsjs](https://handlebarsjs.com/)
 
 ## QA
 
@@ -19,5 +19,5 @@
      -  使用 ESM 规范 “module”=“Node16”、“moduleResolution”=“Node16”，或者更新的 NodeNext
   - 使用 tsx 编译时
     - 使用新的ESM解析规范、import 引入需要带上文件后缀，使用 .ts 后缀，编译不会转换为 .js，可直接使用 .js 后缀。
-  - 使用 CommonJS 规范时、依赖吧包需要使用 CommonJS 规范的版本
+  - 使用 CommonJS 规范时、依赖的第三方包需要使用 CommonJS 规范的版本
   - [详细参考](./esm-package.md)
