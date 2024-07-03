@@ -31,8 +31,8 @@ export default async function slpParseTsxAddRoute(crtInst: RunCreat) {
 
     console.log('route_file_path: ', routeFile)
 
-    const lazyTemp = `const ${crtInst.answers.fileName} = lazy(() => import('./pages/${crtInst.answers.fileName}/Home'))`
-    const routeTemp = `<Route path="${crtInst.answers.fileName}/*" element={<${crtInst.answers.fileName} />} />`
+    const lazyTemp = `const ${crtInst.answers.fileName} = lazy(() => import('./pages/${crtInst.answers.fileName}'))`
+    const routeTemp = `<Route path="${crtInst.answers.fileName.toLowerCase()}/*" element={<${crtInst.answers.fileName} />} />`
 
     const file = await fs.readFile(path.resolve(routeFile), { encoding: 'utf-8' })
     const fileArr = file.split("\n")

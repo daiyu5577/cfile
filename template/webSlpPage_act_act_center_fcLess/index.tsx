@@ -1,5 +1,4 @@
 import React, { useState, useMemo, useEffect, useRef, SetStateAction } from 'react'
-import React, { useEffect, useState, useMemo } from 'react'
 import { Routes, Route, useLocation, useNavigate } from 'react-router-dom'
 import { getUserInfo, isInApp, navigateBack, getSystemInfoSync } from '/src/native'
 import Home from './Home'
@@ -26,7 +25,7 @@ export default function EntryComp() {
   return (
     <div className={styles.entryComp}>
       <div onClick={handleBack} className="back-box rc">
-        <img className='backIcon2 atouch' src={backIcon2} alt="" /> :
+        <img className='backIcon2 atouch' src={backIcon2} alt="" />
       </div>
       <Routes>
         <Route index element={<Home />} />
