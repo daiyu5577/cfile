@@ -38,8 +38,8 @@ function slpParseTsxAddRoute(crtInst) {
             const matchPath = (_a = crtInst.copyTargetPath.match(curRoute.matchReg)) === null || _a === void 0 ? void 0 : _a[0];
             routeFile = matchPath + curRoute.routePath;
             console.log('route_file_path: ', routeFile);
-            const lazyTemp = `const ${crtInst.answers.fileName} = lazy(() => import('./pages/${crtInst.answers.fileName}/Home'))`;
-            const routeTemp = `<Route path="${crtInst.answers.fileName}/*" element={<${crtInst.answers.fileName} />} />`;
+            const lazyTemp = `const ${crtInst.answers.fileName} = lazy(() => import('./pages/${crtInst.answers.fileName}'))`;
+            const routeTemp = `<Route path="${crtInst.answers.fileName.toLowerCase()}/*" element={<${crtInst.answers.fileName} />} />`;
             const file = yield promises_1.default.readFile(path_1.default.resolve(routeFile), { encoding: 'utf-8' });
             const fileArr = file.split("\n");
             let lastLazy = -1;
