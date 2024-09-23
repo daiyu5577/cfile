@@ -24,15 +24,14 @@ export default function Home() {
   const isLoad = useIsLoad(130)
 
   const httpGetHome = () => {
-    httpGetHome()
-  }
-
-  useEffect(() => {
     Toast.loading()
     getHome({})
       .then((data) => { })
       .finally(Toast.hide)
-    onReturnToWeb(httpGetHome)
+  }
+
+  useEffect(() => {
+    httpGetHome()
   }, [])
 
   return (
