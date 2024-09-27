@@ -27,7 +27,8 @@ class RunCreat {
   // 选择结果
   answers = {
     targetTemp: '',
-    fileName: ''
+    fileName: '',
+    isPageRoute: false
   }
 
   // 生成目标路径
@@ -65,7 +66,13 @@ class RunCreat {
           }
           return true
         }
-      }
+      },
+      {
+        type: 'confirm',
+        name: 'isPageRoute',
+        message: "是否页面路由？",
+        default: false
+      },
     ])
     this.answers = answers
     // tip 加载模板

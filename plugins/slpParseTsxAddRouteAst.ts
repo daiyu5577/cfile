@@ -20,6 +20,9 @@ const includeRoutes = [
 type IncludeRouteItem = typeof includeRoutes[number]
 
 export default async function slpParseTsxAddRoute(crtInst: RunCreat) {
+
+  if (!crtInst.answers.isPageRoute) return
+
   try {
 
     let routeFile = ''

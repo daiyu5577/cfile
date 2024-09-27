@@ -8,7 +8,7 @@ import RunCreat from './command/creat'
 program
   .name('creat')
   .description('创建模板文件到指定目录')
-  .requiredOption('-p, --path <string>', '路径')
+  .requiredOption('-p, --path <string>', 'template output path')
   .action((options, command) => {
     const runCreat = new RunCreat(options)
     runCreat.start()

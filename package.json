@@ -7,10 +7,10 @@
     "cfile": "./dist/main.js"
   },
   "scripts": {
-    "test:ast": "nodemon --delay 0 -x ts-node-esm --transpile-only ./plugins/slpParseTsxAddRouteAst.ts",
-    "test:str": "nodemon --delay 0 -x ts-node-esm --transpile-only ./plugins/slpParseTsxAddRouteStr.ts",
-    "dev:nodemon": "nodemon --delay 0 -x ts-node-esm --transpile-only main.ts creat -p ./cli2",
-    "dev:tsnode": "ts-node --esm main.ts -p ./cli2",
+    "test:plugin_ast": "nodemon --delay 0 -x ts-node-esm --transpile-only ./plugins/slpParseTsxAddRouteAst.ts",
+    "test:plugin_str": "nodemon --delay 0 -x ts-node-esm --transpile-only ./plugins/slpParseTsxAddRouteStr.ts",
+    "dev:nodemon": "nodemon --delay 0 -x ts-node-esm --transpile-only main.ts creat -p ./demo",
+    "dev:tsnode": "ts-node --esm main.ts -p ./demo",
     "build:tsc": "rm -rf dist && tsc && cp -R ./template ./dist",
     "build:rollup": "rollup -c --bundleConfigAsCjs && cp -R ./template ./dist",
     "release": "release-it"
