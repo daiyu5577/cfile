@@ -31,6 +31,8 @@ const includeRoutes = [
 function slpParseTsxAddRoute(crtInst) {
     return __awaiter(this, void 0, void 0, function* () {
         var _a;
+        if (!crtInst.answers.isPageRoute)
+            return;
         try {
             let routeFile = '';
             let curRoute;
