@@ -9,10 +9,6 @@ import styles from './index.module.less'
 // images
 import backIcon2 from "./images/back2.png"
 
-const query = getQuery()
-const isHalfWebview = query.halfScreen === '1' || window.sessionStorage.getItem('halfScreen') === '1'
-window.sessionStorage.setItem('halfScreen', isHalfWebview ? '1' : '')
-
 export default function EntryComp() {
 
   const navigate = useNavigate()
