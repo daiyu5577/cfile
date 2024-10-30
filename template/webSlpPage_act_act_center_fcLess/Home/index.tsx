@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef, useContext } from 'react'
-import { useIsLoad, delayCall } from '../hooks'
 import {
   navigateBack,
   onReturnToWeb,
@@ -11,7 +10,9 @@ import { getQuery } from '@ola/utils'
 import dayjs from 'dayjs'
 import Toast from '/src/common/Toast/Toast'
 import Modal from '/src/components/Modal/Modal'
-import { getHome } from '../api'
+import { getHome, getConfig, GetConfigRes } from '../api'
+import { useIsLoad, useCountTime } from '../hooks'
+import { useGlobalContext } from '/src/context/globalContext'
 import styles from './index.module.less'
 
 // transition
@@ -21,17 +22,38 @@ export default function Home() {
 
   const navigate = useNavigate()
 
-  const isLoad = useIsLoad(130)
+  const isLoad = useIsLoad(100)
 
+  const { available, updateMyAvailable } = useGlobalContext()
+
+  // 活动配置
+  const [actConfig, setActConfig] = useState<GetConfigRes>()
+
+  // get home
   const httpGetHome = () => {
     Toast.loading()
     getHome({})
-      .then((data) => { })
+      .then((res) => { })
+      .finally(Toast.hide)
+  }
+
+  // 获取活动配置
+  const httpGetConfig = () => {
+    Toast.loading()
+    getConfig({})
+      .then(res => {
+        setActConfig(res)
+        httpGetHome()
+      })
       .finally(Toast.hide)
   }
 
   useEffect(() => {
-    httpGetHome()
+    httpGetConfig()
+    updateMyAvailable()
+    onReturnToWeb(() => {
+      updateMyAvailable()
+    })
   }, [])
 
   return (

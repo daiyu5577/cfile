@@ -1,0 +1,60 @@
+.inputCount {
+  font-size: 24px;
+  color: #FFF;
+
+  :global {
+
+    .count-left,
+    .count-right {
+      width: 45px;
+      height: 45px;
+      background: #0f4459;
+      border-radius: 5px;
+      color: #ffffff;
+      font-size: 34px;
+      margin: 0 10px;
+
+      &:active {
+        opacity: 0.7;
+      }
+    }
+
+    .count-center {
+      text-align: center;
+      width: 100px;
+      padding: 0 10px;
+      font-weight: 400;
+
+      input {
+        text-align: center;
+        font-size: 30px;
+        color: #000;
+        border: none;
+        width: 100%;
+        height: 100%;
+
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+        }
+      }
+    }
+
+    .count-max {
+      margin: 0 10px;
+      padding: 10px 20px;
+      border-radius: 5px;
+      background: #0f4459;
+
+      &:active {
+        opacity: 0.7;
+      }
+    }
+
+    .disabled {
+      background: #ddd;
+      pointer-events: none;
+      color: #3a3a3a;
+    }
+  }
+}
