@@ -153,3 +153,94 @@ export const delayCall = (fn: () => any, t = 0) => {
   setTimeout(fn, t)
 }
 
+
+interface Props {
+  viewDOM: React.RefObject<HTMLDivElement>
+  scrollDOM: React.RefObject<HTMLDivElement>
+  direction: 'x' | 'y'
+  needLoopCount?: number //  需要循环次数
+  speed?: number // 初始速度
+  damping?: number
+}
+export const useLotteryScroll = (props: Props) => {
+
+  const { viewDOM, scrollDOM, direction, needLoopCount = 2, speed = 6, damping = 0.95 } = props
+
+  // lottery
+  const handleLottery = (targetIndex: number) => {
+    if (!viewDOM.current || !scrollDOM.current) return
+    const viewHeight = viewDOM.current!.offsetHeight
+    const viewWidth = viewDOM.current!.offsetWidth
+    const scrollHeight = scrollDOM.current!.scrollHeight
+    const scrollWidth = scrollDOM.current!.scrollWidth
+    const loopLastTop = scrollHeight - viewHeight // 重置循环节点偏移top
+    const loopLastLeft = scrollWidth - viewWidth // 重置循环节点偏移left
+    const targetTop = targetIndex == 0 ? loopLastTop : targetIndex * viewHeight // 中奖滚动高度
+    const targetLeft = targetIndex == 0 ? loopLastLeft : targetIndex * viewWidth // 中奖滚动高度
+    let loopCount = 0
+    let translateY = 0
+    let translateX = 0
+    let moveStep = speed
+
+    function animateX(t: number) {
+      if (loopCount >= needLoopCount) {
+        moveStep = Math.max(1, moveStep * damping)
+        translateX = Math.min(translateX + moveStep, targetLeft)
+        scrollDOM.current!.style.transform = `translateX(-${translateX}px)`
+        if (translateX < targetLeft) {
+          requestAnimationFrame(animateX)
+        }
+        return
+      }
+      translateX = Math.min(translateX + moveStep, loopLastLeft)
+      if (translateX >= loopLastLeft) {
+        translateX = 0
+        loopCount += 1
+      }
+      scrollDOM.current!.style.transform = `translateX(-${translateX}px)`
+      requestAnimationFrame(animateX)
+    }
+
+    function animateY(t: number) {
+      if (loopCount >= needLoopCount) {
+        moveStep = Math.max(1, moveStep * damping)
+        translateY = Math.min(translateY + moveStep, targetTop)
+        scrollDOM.current!.style.transform = `translateY(-${translateY}px)`
+        if (translateY < targetTop) {
+          requestAnimationFrame(animateY)
+        }
+        return
+      }
+      translateY = Math.min(translateY + moveStep, loopLastTop)
+      if (translateY >= loopLastTop) {
+        translateY = 0
+        loopCount += 1
+      }
+      scrollDOM.current!.style.transform = `translateY(-${translateY}px)`
+      requestAnimationFrame(animateY)
+    }
+
+    requestAnimationFrame(direction == 'x' ? animateX : animateY)
+  }
+
+  // init
+  const init = () => {
+    const viewHeight = viewDOM.current!.offsetHeight
+    const viewWidth = viewDOM.current!.offsetWidth
+    const scrollChildren = Array.from(scrollDOM.current!.children || [])
+    if (!!scrollChildren.length) {
+      scrollDOM.current!.appendChild(scrollChildren[0].cloneNode(true))
+      scrollChildren.forEach(v => {
+        if (direction == 'x') {
+          (v as HTMLDivElement).style.width = `${viewWidth}px`
+        } else {
+          (v as HTMLDivElement).style.height = `${viewHeight}px`
+        }
+      })
+    }
+  }
+
+  useEffect(init, [])
+
+  return { handleLottery }
+}
