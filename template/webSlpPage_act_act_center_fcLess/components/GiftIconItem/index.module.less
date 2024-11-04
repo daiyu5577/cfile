@@ -1,0 +1,51 @@
+// gift
+.gift {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  :global {
+
+    .ellipsis {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .gift-icon {
+      width: 245px;
+      height: 245px;
+      background: url(../../images/pm_modal_item.png) center center / 100% 100% no-repeat;
+      position: relative;
+
+      img {
+        width: 60%;
+        height: 60%;
+        object-fit: contain;
+      }
+
+      .gift-tag {
+        background: linear-gradient(to bottom, #fbfd77, #fe8b55);
+        border-radius: 18px;
+        color: #ac3e1d;
+        font-size: 24px;
+        font-weight: 500;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        min-width: 60px;
+        padding: 2px 15px;
+        transform: scale(0.9);
+      }
+    }
+
+    .gift-name {
+      margin-top: 10px;
+      font-weight: bold;
+      font-size: 28px;
+      color: #D86B2C;
+      width: 260px;
+      text-align: center;
+    }
+  }
+}
